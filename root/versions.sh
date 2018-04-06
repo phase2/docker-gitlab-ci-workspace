@@ -9,3 +9,5 @@ python --version
 pip --version
 echo "kubectl:" $(kubectl version --client --short)
 echo "helm:" $(helm version --client --short)
+echo "---------------"
+echo

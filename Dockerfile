@@ -6,7 +6,7 @@ LABEL maintainer="Phase2 <outrigger@phase2technology.com>" \
   org.label-schema.vendor="Phase2 <outrigger@phase2technology.com>" \
   name="Outrigger GitLab CI Workspace" \
   org.label-schema.name="Outrigger GitLab CI Workspace" \
-  org.label-schema.description="A GitLab CI workbench ready for a container-based pipeline" \
+  org.label-schema.description="A GitLab CI workbench ready to support a container-based pipeline." \
   org.label-schema.vcs-url="https://github.com/phase2/docker-gitlab-ci-workspace" \
   org.label-schema.schema-version="1.0"
 
