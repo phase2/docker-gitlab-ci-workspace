@@ -3,6 +3,10 @@ sudo: required
 services:
   - docker
 
+# General purpose travis instance.
+# No language designation defaults to Ruby.
+language: bash
+
 before_install:
   # Dockerfile linting tool.
   # https://github.com/phase2/hadolint/hadolint
