@@ -1,0 +1,20 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  # Dockerfile linting tool.
+  # https://github.com/phase2/hadolint/hadolint
+  - docker pull hadolint/hadolint
+  # Double-check the version of Docker travis will use.
+  - docker --version
+
+script:
+  # Lint the Dockerfile.
+  - docker run --rm -i hadolint/hadolint hadolint - < Dockerfile
+  # Test that the image build.
+  - docker build -t outrigger/gitlab-ci-workspace:tmp .
+  # Version check our tools
+  # If any tool is not present, the versions script will abort and the test run will fail.
+  - docker run --rm outrigger/gitlab-ci-workspace:tmp /versions.sh
