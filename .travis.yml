@@ -11,8 +11,8 @@ before_install:
   - docker --version
 
 script:
-  # Lint the Dockerfile.
-  - docker run --rm -i hadolint/hadolint hadolint - < Dockerfile
+  # Lint the Dockerfile. Suppressing rules for pinning to specific dependency versions.
+  - docker run --rm -i hadolint/hadolint hadolint --ignore SC2046 --ignore DL3018 --ignore DL3013 - < Dockerfile
   # Test that the image build.
   - docker build -t outrigger/gitlab-ci-workspace:tmp .
   # Version check our tools
