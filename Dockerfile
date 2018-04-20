@@ -1,4 +1,9 @@
-FROM docker:18
+# docker build --build-arg DOCKER_ENGINE_VERSION=18.04 --tag outrigger/gitlab-ci-workspace .
+# Default to the most recent v18 release at the time of the build.
+# To grab the most recent version, specify 'latest'
+ARG DOCKER_ENGINE_VERSION=18
+
+FROM docker:$DOCKER_ENGINE_VERSION
 
 # @see http://label-schema.org/rc1/
 LABEL maintainer="Phase2 <outrigger@phase2technology.com>" \
