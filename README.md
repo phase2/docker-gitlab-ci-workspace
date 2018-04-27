@@ -2,7 +2,7 @@
 
 > A GitLab CI workbench ready to support a container-based pipeline.
 
-[![GitHub tag](https://img.shields.io/github/tag/phase2/docker-gitlab-ci-workspace.svg)](https://github.com/phase2/docker-gitlab-ci-workspace) [![Docker Stars](https://img.shields.io/docker/stars/outrigger/gitlab-ci-workspace.svg)](https://hub.docker.com/r/outrigger/gitlab-ci-workspace) [![Docker Pulls](https://img.shields.io/docker/pulls/outrigger/gitlab-ci-workspace.svg)](https://hub.docker.com/r/outrigger/gitlab-ci-workspace) [![](https://images.microbadger.com/badges/image/outrigger/gitlab-ci-workspace:latest.svg)](https://microbadger.com/images/outrigger/gitlab-ci-workspace:latest "Get your own image badge on microbadger.com")
+[![GitHub tag](https://img.shields.io/github/tag/phase2/docker-gitlab-ci-workspace.svg)](https://github.com/phase2/docker-gitlab-ci-workspace) [![Docker Stars](https://img.shields.io/docker/stars/outrigger/gitlab-ci-workspace.svg)](https://hub.docker.com/r/outrigger/gitlab-ci-workspace) [![Docker Pulls](https://img.shields.io/docker/pulls/outrigger/gitlab-ci-workspace.svg)](https://hub.docker.com/r/outrigger/gitlab-ci-workspace) [![](https://images.microbadger.com/badges/image/outrigger/gitlab-ci-workspace:18.svg)](https://microbadger.com/images/outrigger/gitlab-ci-workspace:18 "Get your own image badge on microbadger.com")
 
 GitLab CI allows specification of a Docker image which will be pulled and started
 as the first step of each job in every pipeline. For pipelines which will build
