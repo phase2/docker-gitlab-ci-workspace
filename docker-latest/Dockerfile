@@ -1,5 +1,3 @@
-# Default to the most recent v18 release at the time of the build.
-# To grab the most recent version, specify 'latest'
 ARG DOCKER_ENGINE_VERSION=latest
 
 FROM docker:$DOCKER_ENGINE_VERSION

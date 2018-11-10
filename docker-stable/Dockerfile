@@ -1,7 +1,4 @@
-# docker build --build-arg DOCKER_ENGINE_VERSION=18.04 --tag outrigger/gitlab-ci-workspace .
-# Default to the most recent v18 release at the time of the build.
-# To grab the most recent version, specify 'latest'
-ARG DOCKER_ENGINE_VERSION=18
+ARG DOCKER_ENGINE_VERSION=stable
 
 FROM docker:$DOCKER_ENGINE_VERSION
 
@@ -27,8 +24,9 @@ RUN apk add --no-cache \
     # Install Kubernetes & Environment Management tools
     curl -o /usr/local/bin/kubectl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x /usr/local/bin/kubectl && \
-    # Consider skipping the curlbash: https://github.com/lachie83/k8s-helm/blob/v2.8.2/Dockerfile
-    curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash && \
+    curl -o ./install_helm.sh https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get && \
+    chmod +x ./install_helm.sh && \
+    ./install_helm.sh -v v2.7.2 && \
     helm init --client-only
 
 COPY root /
