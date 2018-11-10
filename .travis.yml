@@ -15,13 +15,21 @@ before_install:
   - docker --version
 
 script:
-  # Lint the Dockerfile. Suppressing rules for pinning to specific dependency versions.
-  - docker run --rm -i hadolint/hadolint hadolint --ignore SC2046 --ignore DL3018 --ignore DL3013 - < Dockerfile
+  # Lint the Dockerfiles. Suppressing rules for pinning to specific dependency versions.
+  - docker run --rm -i hadolint/hadolint hadolint --ignore SC2046 --ignore DL3018 --ignore DL3013 - < docker-latest/Dockerfile
+  - docker run --rm -i hadolint/hadolint hadolint --ignore SC2046 --ignore DL3018 --ignore DL3013 - < docker-stable/Dockerfile
+  - docker run --rm -i hadolint/hadolint hadolint --ignore SC2046 --ignore DL3018 --ignore DL3013 - < docker-18/Dockerfile
   # Test that the image build.
-  - docker build -t outrigger/gitlab-ci-workspace:tmp .
+  - docker build -t outrigger/gitlab-ci-workspace:latest docker-latest/Dockerfile
+  - docker build -t outrigger/gitlab-ci-workspace:stable docker-stable/Dockerfile
+  - docker build -t outrigger/gitlab-ci-workspace:18 docker-18/Dockerfile
   # Version check our tools
   # If any tool is not present, the versions script will abort and the test run will fail.
-  - docker run --rm outrigger/gitlab-ci-workspace:tmp /versions.sh
+  - docker run --rm outrigger/gitlab-ci-workspace:latest /versions.sh
+  - docker run --rm outrigger/gitlab-ci-workspace:stable /versions.sh
+  - docker run --rm outrigger/gitlab-ci-workspace:18 /versions.sh
   # Take a closer look at the image.
-  - docker image inspect outrigger/gitlab-ci-workspace:tmp
+  - docker image inspect outrigger/gitlab-ci-workspace:latest
+  - docker image inspect outrigger/gitlab-ci-workspace:stable
+  - docker image inspect outrigger/gitlab-ci-workspace:18
   
