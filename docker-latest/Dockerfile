@@ -17,6 +17,7 @@ RUN apk add --no-cache \
     curl \
     openssl \
     py2-pip \
+    git \
         && \
     # Install Python tools
     pip install docker-compose \
