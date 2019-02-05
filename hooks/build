@@ -2,9 +2,9 @@
 set -ex
 
 for target in latest stable 18; do
-  docker image build \
+  docker build \
       --build-arg DOCKER_ENGINE_VERSION="$target" \
+      -f $DOCKERFILE_PATH \
       --tag "$DOCKER_REPO:$target" \
-      --target "$target" \
       .
 done
