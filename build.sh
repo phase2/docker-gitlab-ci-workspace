@@ -10,13 +10,14 @@ if [ $# -gt 0 ]; then
   buildDirs="$@"
 else
   # else, get all the relevant dirs
-  buildDirs=$(find . -type d -name 'docker-*' | sed 's/^\.\///')
+  buildDirs="latest stable 18"
 fi
 echo $buildDirs
 
 # Build each one of them
-for version in $buildDirs; do
-  pushd $version
-  docker build -t outrigger/gitlab-ci-workspace:${version} .
-  popd
+for target in $buildDirs; do
+  docker build \
+      --build-arg DOCKER_ENGINE_VERSION="$target" \
+      --tag "$DOCKER_REPO:$target" \
+      .
 done
