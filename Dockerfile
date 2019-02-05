@@ -1,7 +1,8 @@
 ARG DOCKER_ENGINE_VERSION=stable
-ARG HELM_VERSION=v2.7.2
 
 FROM docker:$DOCKER_ENGINE_VERSION
+
+ARG HELM_VERSION=v2.7.2
 
 # @see http://label-schema.org/rc1/
 LABEL maintainer="Phase2 <outrigger@phase2technology.com>" \
@@ -28,7 +29,7 @@ RUN apk add --no-cache \
     chmod +x /usr/local/bin/kubectl && \
     curl -o ./install_helm.sh https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get && \
     chmod +x ./install_helm.sh && \
-    ./install_helm.sh -v $HELM_VERSION && \
+    ./install_helm.sh -v ${HELM_VERSION} && \
     helm init --client-only
 
 COPY root /
