@@ -2,11 +2,15 @@
 YELLOW="\033[0;33m"
 NORMAL="\033[0;0m"
 
-helmVersion=v2.12.3
 
 set -ex
 
-for target in ${BUILD_LIST:-latest stable 18}; do
+for target in ${BUILD_LIST:-latest stable 18 helm}; do
+  if [ $target = "helm" ]; then
+    helmVersion=v2.12.3
+  else
+    helmVersion=v2.7.2
+  fi
   printf "${YELLOW}Building $DOCKER_REPO:${target}...${NORMAL}\n"
   docker build -f "$DOCKERFILE_PATH" -t $DOCKER_REPO:${target} . \
     --build-arg DOCKER_ENGINE_VERSION="$target" \
