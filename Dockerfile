@@ -2,7 +2,7 @@ ARG DOCKER_ENGINE_VERSION=stable
 
 FROM docker:$DOCKER_ENGINE_VERSION
 
-ARG HELM_VERSION=v2.7.2
+ARG HELM_VERSION=v2.12.3
 
 # @see http://label-schema.org/rc1/
 LABEL maintainer="Phase2 <outrigger@phase2technology.com>" \
