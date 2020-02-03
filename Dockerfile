@@ -36,11 +36,10 @@ RUN apk add --no-cache \
     chmod +x ./install_helm.sh && \
     ./install_helm.sh -v ${HELM_VERSION} && \
     helm init --client-only && \
-    cd /tmp && \
     curl -o /tmp/helm-${HELM3_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
-    tar -xvzf helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+    tar -xvzf /tmp/helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
     mv linux-amd64/helm /usr/local/bin/helm3 && \
-    rm -f helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+    rm -f /tmp/helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
     rm -rf linux-amd64/ && \
     rm -rf /var/cache/apk/*
 
