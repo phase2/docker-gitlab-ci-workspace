@@ -3,6 +3,7 @@ ARG DOCKER_ENGINE_VERSION=stable
 FROM docker:$DOCKER_ENGINE_VERSION
 
 ARG HELM_VERSION=v2.12.3
+ARG HELM3_VERSION=v3.0.3
 
 # @see http://label-schema.org/rc1/
 LABEL maintainer="Phase2 <outrigger@phase2technology.com>" \
@@ -15,6 +16,10 @@ LABEL maintainer="Phase2 <outrigger@phase2technology.com>" \
   org.label-schema.schema-version="1.0"
 
 RUN apk add --no-cache \
+    build-base \
+    python2-dev \
+    libffi-dev \
+    openssl-dev \
     bash \
     curl \
     openssl \
@@ -30,6 +35,13 @@ RUN apk add --no-cache \
     curl -o ./install_helm.sh https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get && \
     chmod +x ./install_helm.sh && \
     ./install_helm.sh -v ${HELM_VERSION} && \
-    helm init --client-only
+    helm init --client-only && \
+    cd /tmp && \
+    curl -o /tmp/helm-${HELM3_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+    tar -xvzf helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+    mv linux-amd64/helm /usr/local/bin/helm3 && \
+    rm -f helm-${HELM3_VERSION}-linux-amd64.tar.gz && \
+    rm -rf linux-amd64/ && \
+    rm -rf /var/cache/apk/*
 
 COPY root /
